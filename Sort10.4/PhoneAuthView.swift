@@ -155,6 +155,8 @@ struct PhoneAuthView: View {
             .background(Color.white)
         }
         .background(Color.white)
+#if os(iOS)
         .navigationBarHidden(true)
+        #endif
     }
 }

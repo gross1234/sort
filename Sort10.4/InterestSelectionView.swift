@@ -115,7 +115,9 @@ struct InterestSelectionView: View {
             .padding(.bottom, 50)
         }
         .background(Color.white)
+#if os(iOS)
         .navigationBarHidden(true)
+        #endif
     }
     
     private func startFullOnboarding() {

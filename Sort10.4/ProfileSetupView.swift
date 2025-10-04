@@ -220,7 +220,9 @@ struct ProfileSetupView: View {
             }
         }
         .background(Color.white)
+#if os(iOS)
         .navigationBarHidden(true)
+        #endif
     }
     
     private func completeProfileSetup() {

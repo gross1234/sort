@@ -127,7 +127,9 @@ struct OTPVerificationView: View {
             .padding(.bottom, 40)
         }
         .background(Color.white)
+#if os(iOS)
         .navigationBarHidden(true)
+        #endif
         .onAppear {
             authManager.otpCode = otpCode
         }
