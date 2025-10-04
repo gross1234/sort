@@ -31,7 +31,7 @@ struct ProfileSetupView: View {
             ZStack {
                 Rectangle()
                     .fill(Color.pink)
-                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                    .cornerRadius(20)
                 
                 VStack {
                     // Back button
@@ -235,47 +235,3 @@ struct ProfileSetupView: View {
     }
 }
 
-extension Rectangle {
-    func cornerRadius(_ radius: CGFloat, corners: Corner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
-    }
-}
-
-struct Corner: OptionSet {
-    let rawValue: Int
-    
-    static let topLeft = Corner(rawValue: 1 << 0)
-    static let topRight = Corner(rawValue: 1 << 1)
-    static let bottomLeft = Corner(rawValue: 1 << 2)
-    static let bottomRight = Corner(rawValue: 1 << 3)
-    
-    static let allCorners: Corner = [.topLeft, .topRight, .bottomLeft, .bottomRight]
-}
-
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: Corner = .allCorners
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        let topLeft = corners.contains(.topLeft) ? radius : 0
-        let topRight = corners.contains(.topRight) ? radius : 0
-        let bottomLeft = corners.contains(.bottomLeft) ? radius : 0
-        let bottomRight = corners.contains(.bottomRight) ? radius : 0
-        
-        path.move(to: CGPoint(x: topLeft, y: 0))
-        path.addLine(to: CGPoint(x: width - topRight, y: 0))
-        path.addArc(center: CGPoint(x: width - topRight, y: topRight), radius: topRight, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
-        path.addLine(to: CGPoint(x: width, y: height - bottomRight))
-        path.addArc(center: CGPoint(x: width - bottomRight, y: height - bottomRight), radius: bottomRight, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
-        path.addLine(to: CGPoint(x: bottomLeft, y: height))
-        path.addArc(center: CGPoint(x: bottomLeft, y: height - bottomLeft), radius: bottomLeft, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
-        path.addLine(to: CGPoint(x: 0, y: topLeft))
-        path.addArc(center: CGPoint(x: topLeft, y: topLeft), radius: topLeft, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
-        
-        return path
-    }
-}
