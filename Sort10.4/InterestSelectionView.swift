@@ -40,7 +40,7 @@ struct InterestSelectionView: View {
                         Rectangle()
                             .fill(Color.blue)
                             .frame(width: 200, height: 80)
-                            .cornerRadius(15, corners: [.topLeft, .topRight])
+                            .cornerRadius(15)
                         
                         Rectangle()
                             .fill(Color.blue)
@@ -57,7 +57,7 @@ struct InterestSelectionView: View {
                         Rectangle()
                             .fill(Color.red)
                             .frame(width: 60, height: 20)
-                            .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                            .cornerRadius(10)
                         
                         // Diagonal cut effect
                         Path { path in
