@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ProfileSetupView: View {
     @EnvironmentObject var authManager: AuthenticationManager
