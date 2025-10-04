@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct ProfileSetupView: View {
     @EnvironmentObject var authManager: AuthenticationManager
@@ -16,7 +15,7 @@ struct ProfileSetupView: View {
     @State private var phone: String = ""
     @State private var selectedProperty: String = ""
     @State private var hasReligiousAssociation: Bool = false
-    @State private var profileImage: UIImage?
+    @State private var profileImage: Image?
     
     let sampleProperties = [
         "Downtown Luxury Apartments",
@@ -81,7 +80,7 @@ struct ProfileSetupView: View {
                                 .frame(width: 120, height: 120)
                             
                             if let profileImage = profileImage {
-                                Image(uiImage: profileImage)
+                                profileImage
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 120, height: 120)
